@@ -14,6 +14,9 @@ export default function LoadingAnimation() {
     "Muttom",
   ];
 
+  console.log(stationIndex);
+  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setPosition((prev) => {

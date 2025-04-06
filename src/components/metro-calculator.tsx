@@ -1,58 +1,67 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import MetroMap from "@/components/metro-map"
-import LoadingAnimation from "@/components/loading-animation"
-import { calculateTravelTime, calculateFare, kochiMetroStations } from "@/lib/metro-utils"
+import { useState } from "react";
+import Image from "next/image";
+import MetroMap from "@/components/metro-map";
+import LoadingAnimation from "@/components/loading-animation";
+import {
+  calculateTravelTime,
+  calculateFare,
+  kochiMetroStations,
+} from "@/lib/metro-utils";
 
 export default function MetroCalculator() {
-  const [origin, setOrigin] = useState("")
-  const [destination, setDestination] = useState("")
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
   const [result, setResult] = useState<{
-    time: number
-    stations: number
-    fare: number
-  } | null>(null)
-  const [showMap, setShowMap] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+    time: number;
+    stations: number;
+    fare: number;
+  } | null>(null);
+  //   const [showMap, setShowMap] = useState(false)
+  const showMap = false;
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCalculate = () => {
     if (origin && destination) {
-      setIsLoading(true)
+      setIsLoading(true);
 
       // Simulate loading for the animation
       setTimeout(() => {
-        const originIndex = kochiMetroStations.findIndex((station) => station.id === origin)
-        const destinationIndex = kochiMetroStations.findIndex((station) => station.id === destination)
+        const originIndex = kochiMetroStations.findIndex(
+          (station) => station.id === origin
+        );
+        const destinationIndex = kochiMetroStations.findIndex(
+          (station) => station.id === destination
+        );
 
         if (originIndex !== -1 && destinationIndex !== -1) {
-          const stationCount = Math.abs(destinationIndex - originIndex)
-          const time = calculateTravelTime(stationCount)
-          const fare = calculateFare(stationCount)
+          const stationCount = Math.abs(destinationIndex - originIndex);
+          const time = calculateTravelTime(stationCount);
+          const fare = calculateFare(stationCount);
 
           setResult({
             time,
             stations: stationCount,
             fare,
-          })
-          setIsLoading(false)
+          });
+          setIsLoading(false);
         }
-      }, 2000) // 2 second loading animation
+      }, 2000); // 2 second loading animation
     }
-  }
+  };
 
   const resetForm = () => {
-    setOrigin("")
-    setDestination("")
-    setResult(null)
-  }
+    setOrigin("");
+    setDestination("");
+    setResult(null);
+  };
 
   const swapStations = () => {
-    setOrigin(destination)
-    setDestination(origin)
-    setResult(null)
-  }
+    setOrigin(destination);
+    setDestination(origin);
+    setResult(null);
+  };
 
   return (
     <div className="w-full">
@@ -61,7 +70,10 @@ export default function MetroCalculator() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="space-y-2">
-                <label htmlFor="origin" className="block text-sky-800 font-medium">
+                <label
+                  htmlFor="origin"
+                  className="block text-sky-800 font-medium"
+                >
                   Origin Station
                 </label>
                 <div className="relative">
@@ -119,7 +131,10 @@ export default function MetroCalculator() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="destination" className="block text-sky-800 font-medium">
+                <label
+                  htmlFor="destination"
+                  className="block text-sky-800 font-medium"
+                >
                   Destination Station
                 </label>
                 <div className="relative">
@@ -159,7 +174,12 @@ export default function MetroCalculator() {
                 <button
                   onClick={handleCalculate}
                   className="flex-1 bg-sky-600 hover:bg-sky-700 text-white py-2 px-4 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 disabled:opacity-50 disabled:bg-sky-300"
-                  disabled={!origin || !destination || origin === destination || isLoading}
+                  disabled={
+                    !origin ||
+                    !destination ||
+                    origin === destination ||
+                    isLoading
+                  }
                 >
                   {isLoading ? "Calculating..." : "Calculate Time"}
                 </button>
@@ -184,7 +204,9 @@ export default function MetroCalculator() {
                 <LoadingAnimation />
               ) : result ? (
                 <div className="space-y-4 w-full">
-                  <h3 className="text-xl font-semibold text-sky-800 text-center">Journey Details</h3>
+                  <h3 className="text-xl font-semibold text-sky-800 text-center">
+                    Journey Details
+                  </h3>
 
                   <div className="grid grid-cols-1 gap-3">
                     <div className="bg-sky-50 rounded-lg p-4 flex items-center gap-3">
@@ -205,7 +227,9 @@ export default function MetroCalculator() {
                       </div>
                       <div>
                         <p className="text-sm text-sky-600">Travel Time</p>
-                        <p className="font-semibold text-sky-900">{result.time} minutes</p>
+                        <p className="font-semibold text-sky-900">
+                          {result.time} minutes
+                        </p>
                       </div>
                     </div>
 
@@ -228,7 +252,9 @@ export default function MetroCalculator() {
                       </div>
                       <div>
                         <p className="text-sm text-sky-600">Stations</p>
-                        <p className="font-semibold text-sky-900">{result.stations} stations</p>
+                        <p className="font-semibold text-sky-900">
+                          {result.stations} stations
+                        </p>
                       </div>
                     </div>
 
@@ -250,7 +276,9 @@ export default function MetroCalculator() {
                       </div>
                       <div>
                         <p className="text-sm text-sky-600">Estimated Fare</p>
-                        <p className="font-semibold text-sky-900">₹{result.fare}</p>
+                        <p className="font-semibold text-sky-900">
+                          ₹{result.fare}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -261,13 +289,20 @@ export default function MetroCalculator() {
                 <div className="text-center p-6 bg-sky-50 rounded-lg w-full">
                   <div className="flex justify-center mb-4">
                     <div className="relative w-32 h-32">
-                      <Image src="/high-speed-train-concept-illustration.png" alt="Kochi Metro Train" fill className="object-contain" />
+                      <Image
+                        src="/high-speed-train-concept-illustration.png"
+                        alt="Kochi Metro Train"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </div>
-                  <h3 className="text-lg font-medium text-sky-800 mb-2">Plan Your Journey</h3>
+                  <h3 className="text-lg font-medium text-sky-800 mb-2">
+                    Plan Your Journey
+                  </h3>
                   <p className="text-slate-600 text-sm">
-                    Select your origin and destination stations to calculate travel time, number of stations, and
-                    estimated fare.
+                    Select your origin and destination stations to calculate
+                    travel time, number of stations, and estimated fare.
                   </p>
                 </div>
               )}
@@ -278,10 +313,12 @@ export default function MetroCalculator() {
 
       {showMap && !isLoading && (
         <div className="mt-6">
-          <MetroMap highlightOrigin={origin} highlightDestination={destination} />
+          <MetroMap
+            highlightOrigin={origin}
+            highlightDestination={destination}
+          />
         </div>
       )}
     </div>
-  )
+  );
 }
-
