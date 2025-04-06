@@ -171,12 +171,12 @@ export default function MetroCalculator() {
                 </button>
               </div>
 
-              <button
+              {/* <button
                 onClick={() => setShowMap(!showMap)}
                 className="w-full text-sky-600 hover:text-sky-700 py-2 font-medium focus:outline-none"
               >
                 {showMap ? "Hide Metro Map" : "Show Metro Map"}
-              </button>
+              </button> */}
             </div>
 
             <div className="flex items-center justify-center">
