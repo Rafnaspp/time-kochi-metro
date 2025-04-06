@@ -22,6 +22,8 @@ export const kochiMetroStations = [
     { id: "vyttila", name: "Vyttila" },
     { id: "thaikoodam", name: "Thaikoodam" },
     { id: "petta", name: "Petta" },
+    { id: "thrippunithara", name: "Thrippunithara" },
+
   ]
   
   /**

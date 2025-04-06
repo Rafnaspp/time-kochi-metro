@@ -35,9 +35,9 @@ export default function LoadingAnimation() {
         <h3 className="text-lg font-medium text-sky-800">
           Calculating Journey...
         </h3>
-        <p className="text-sm text-sky-600">
+        {/* <p className="text-sm text-sky-600">
           Passing through: {stationNames[stationIndex]}
-        </p>
+        </p> */}
       </div>
 
       {/* Track */}
