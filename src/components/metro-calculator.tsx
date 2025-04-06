@@ -261,7 +261,7 @@ export default function MetroCalculator() {
                 <div className="text-center p-6 bg-sky-50 rounded-lg w-full">
                   <div className="flex justify-center mb-4">
                     <div className="relative w-32 h-32">
-                      <Image src="/metro-train.png" alt="Kochi Metro Train" fill className="object-contain" />
+                      <Image src="/high-speed-train-concept-illustration.png" alt="Kochi Metro Train" fill className="object-contain" />
                     </div>
                   </div>
                   <h3 className="text-lg font-medium text-sky-800 mb-2">Plan Your Journey</h3>

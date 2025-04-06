@@ -57,7 +57,7 @@ export default function LoadingAnimation() {
       >
         <div className="relative w-24 h-12">
           <Image
-            src="/metro-train.png"
+            src="/high-speed-train-concept-illustration.png"
             alt="Moving Metro Train"
             width={96}
             height={48}
